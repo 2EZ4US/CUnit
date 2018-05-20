@@ -33,8 +33,7 @@ GENERIC TREE_NODE_Create_Merged(GENERIC right, GENERIC left) {
 }
 
 
-GENERIC TREE_Get_Node_Data (TREE_NODE* node)
-{   
+GENERIC TREE_Get_Node_Data (TREE_NODE* node) {   
     return node->data;
 }
 
