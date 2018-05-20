@@ -1,35 +1,27 @@
-#include <stdio.h>
-#include <limits.h>
-#include <stdlib.h>
-#include <string.h>
-#include "CUnit/Basic.h"
+#include "header.h"
 
-#define GENERIC void*
-#define INTEGER long int
-
-#include "tree.h"
-
-void test_tree_root ()
+void Test_Tree_Root ()
 {
-    BINARY_TREE* arv = BINARY_TREE_Create ();
+    BINARY_TREE* tree = BINARY_TREE_Create ();
 
-    arv->root = TREE_NODE_Create (3);
+    tree->root = TREE_NODE_Create (3);
 
-
-    CU_ASSERT_EQUAL (TREE_Get_Node_Data (arv->root), 3);
+    CU_ASSERT_EQUAL (TREE_Get_Node_Data (tree->root), 3);
+    return;
 }
 
-void test_tree_children()
+void Test_Tree_Children()
 {
-    BINARY_TREE* arv = BINARY_TREE_Create ();
+    BINARY_TREE* tree = BINARY_TREE_Create ();
     
-    arv->root = TREE_NODE_Create_Merged (TREE_NODE_Create(2), TREE_NODE_Create(1));
+    tree->root = TREE_NODE_Create_Merged (TREE_NODE_Create(2), TREE_NODE_Create(1));
 
-    printf("%d\n",arv->root->left->data);
-    printf("%d\n",arv->root->right->data);
+    printf("%d\n",tree->root->left->data);
+    printf("%d\n",tree->root->right->data);
 
-    CU_ASSERT_EQUAL (TREE_Get_Node_Data (arv->root->left), 1);
-    CU_ASSERT_EQUAL (TREE_Get_Node_Data (arv->root->right), 2);
+    CU_ASSERT_EQUAL (TREE_Get_Node_Data (tree->root->left), 1);
+    CU_ASSERT_EQUAL (TREE_Get_Node_Data (tree->root->right), 2);
+    return;
 }
 
 int main ()
@@ -44,8 +36,8 @@ int main ()
     tree_test_root = CU_add_suite ("Testing tree root", 0, 0);
     tree_test_children = CU_add_suite ("Testing tree root children", 0 ,0);
 
-    CU_add_test (tree_test_root, "Testing tree root", test_tree_root);
-    CU_add_test (tree_test_children, "Testing tree root children", test_tree_children);    
+    CU_add_test (tree_test_root, "Testing tree root", Test_Tree_Root);
+    CU_add_test (tree_test_children, "Testing tree root children", Test_Tree_Children);    
     
     // Sets the basic run mode, CU_BRM_VERBOSE will show maximum output of run details
     // Other choices are: CU_BRM_SILENT and CU_BRM_NORMAL

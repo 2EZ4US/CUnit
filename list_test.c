@@ -1,16 +1,6 @@
-#include <stdio.h>
-#include <limits.h>
-#include <stdlib.h>
-#include <string.h>
-#include "CUnit/Basic.h"
+#include "header.h"
 
-#define GENERIC void*
-#define INTEGER long int
-
-#include "deque.h"
-
-
-LIST* build_list_for_test ()
+LIST* Build_List_For_Test ()
 {
    LIST* list = LIST_Create ();
    LIST_Insert_Tail (list, 4);
@@ -21,21 +11,23 @@ LIST* build_list_for_test ()
    return list;
 }
 
-void test_list_insert ()
+void Test_List_Insert ()
 {
-  LIST* list = build_list_for_test ();
+  LIST* list = Build_List_For_Test ();
 
   CU_ASSERT_EQUAL (list->size, 4);
   CU_ASSERT_EQUAL (list->head->data, 4);
   CU_ASSERT_EQUAL (list->tail->data, 9);
+  return;
 }
 
-void test_list_remove ()
+void Test_List_Remove ()
 {
-  LIST* list = build_list_for_test ();
+  LIST* list = Build_List_For_Test ();
 
   LIST_Remove_Tail (list);
   CU_ASSERT_EQUAL (list->tail->data, 2);
+  return;
 }
 
 int main ()
@@ -50,8 +42,8 @@ int main ()
     list_test_insert = CU_add_suite ("Testing List Insert", 0, 0);
     list_test_remove = CU_add_suite ("Testing List Remove", 0 ,0);
 
-    CU_add_test (list_test_insert, "Testing List Insert", test_list_insert);
-    CU_add_test (list_test_remove, "Testing List Remove", test_list_remove);
+    CU_add_test (list_test_insert, "Testing List Insert", Test_List_Insert);
+    CU_add_test (list_test_remove, "Testing List Remove", Test_List_Remove);
     
     // Sets the basic run mode, CU_BRM_VERBOSE will show maximum output of run details
     // Other choices are: CU_BRM_SILENT and CU_BRM_NORMAL

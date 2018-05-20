@@ -1,15 +1,6 @@
-#include <stdio.h>
-#include <limits.h>
-#include <stdlib.h>
-#include <string.h>
-#include "CUnit/Basic.h"
+#include "header.h"
 
-#define GENERIC void*
-#define INTEGER long int
-#define MAX_HEAP_SIZE 10
-#include "heap.h"
-
-HEAP* build_heap_for_test ()
+HEAP* Build_Heap_For_Test ()
 {
     HEAP* heap = HEAP_Create ();
 
@@ -21,23 +12,25 @@ HEAP* build_heap_for_test ()
     return heap;       
 }
 
-void test_heap_size ()
+void Test_Heap_Size ()
 {
-  HEAP *heap = build_heap_for_test();
+  HEAP *heap = Build_Heap_For_Test();
   CU_ASSERT_EQUAL (HEAP_Get_Size (heap), 5);
+  return;
 }
 
-void test_heap_dequeue ()
+void Test_Heap_Dequeue ()
 {
-  HEAP *heap = build_heap_for_test();
+  HEAP *heap = Build_Heap_For_Test();
   CU_ASSERT_EQUAL (HEAP_Dequeue(heap,is_greater),'A');
-
+  return;
 }
 
-void test_heap_parent ()
+void Test_Heap_Parent ()
 {
-  HEAP* heap = build_heap_for_test ();
+  HEAP* heap = Build_Heap_For_Test ();
   CU_ASSERT_EQUAL (HEAP_Get_Data(heap, HEAP_Get_Parent(5)), 400);
+  return;
 }
 
 int main ()
@@ -55,9 +48,9 @@ int main ()
     heap_test_dequeue = CU_add_suite ("Testing heap dequeue", 0, 0);
     heap_test_parent = CU_add_suite ("Testing heap parent", 0, 0);
 
-    CU_add_test (heap_test_size, "Testing heap size", test_heap_size);
-    CU_add_test (heap_test_dequeue, "Testing heap dequeue", test_heap_dequeue);
-    CU_add_test (heap_test_parent, "Testing heap parent ", test_heap_parent);
+    CU_add_test (heap_test_size, "Testing heap size", Test_Heap_Size);
+    CU_add_test (heap_test_dequeue, "Testing heap dequeue", Test_Heap_Dequeue);
+    CU_add_test (heap_test_parent, "Testing heap parent ", Test_Heap_Parent);
     
     // Sets the basic run mode, CU_BRM_VERBOSE will show maximum output of run details
     // Other choices are: CU_BRM_SILENT and CU_BRM_NORMAL
